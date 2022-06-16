@@ -1,0 +1,57 @@
+.background-photo {
+  position: relative;
+  left: 150px;
+  width: 1700px;
+  height: 590px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+/*
+.b-card {
+  width: 50%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+*/
+
+.btn-edit {
+  position: relative;
+  height: 20px;
+  width: 20px;
+  left: 370px;
+  top: 170px;
+}
+
+.mat-card {
+  width: 70%;
+  margin: 10px 10px;
+  padding: 20px;
+  border-color: rgb(36, 156, 196);
+}
+
+.info-personal {
+  position: relative;
+  top: 20px;
+  left: 250px;
+}
+
+.info-persona {
+  font-size: 40px;
+}
+
+.info-localidad {
+  color: antiquewhite;
+}
+
+.text-acercade {
+  color: antiquewhite;
+}
+
+#interes-en {
+  position: relative;
+  left: 340px;
+  bottom: 80px;
+}

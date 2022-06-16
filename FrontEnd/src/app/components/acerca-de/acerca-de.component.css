@@ -1,0 +1,38 @@
+.info-personal {
+  position: relative;
+  top: 20px;
+  left: 250px;
+}
+
+.nombre {
+  color: whitesmoke;
+  font-size: 40px;
+}
+
+.info-localidad {
+  color: antiquewhite;
+}
+
+.text-titulo {
+  color: antiquewhite;
+}
+
+#interes-en {
+  position: relative;
+  left: 560px;
+  bottom: 60px;
+}
+
+.profile-photo {
+  position: absolute;
+  left: 160px;
+  top: 520px;
+  border-radius: 50%;
+  width: 168px;
+  height: 168px;
+}
+
+.text-sobremi {
+  position: relative;
+  color: whitesmoke;
+}
