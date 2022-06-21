@@ -12,6 +12,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AcercaDeComponent } from './components/acerca-de/acerca-de.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { EstudiosComponent } from './components/estudios/estudios.component';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { HysComponent } from './components/hys/hys.component';
 
 @NgModule({
   declarations: [
@@ -22,8 +25,15 @@ import { LoginComponent } from './components/login/login.component';
     AcercaDeComponent,
     HomeComponent,
     LoginComponent,
+    EstudiosComponent,
+    HysComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgCircleProgressModule.forRoot({}),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

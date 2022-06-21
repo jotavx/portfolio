@@ -1,27 +1,35 @@
-<!-- IMAGEN DE PERFIL ↓ -->
-<img src="../../../assets/profile-img.png" alt="profile-picture" class="profile-photo">
+<div class="row">
 
-<div class="info-personal">
-  <!-- NOMBRE Y APELLIDO ↓ -->
-  <p class="nombre"> {{persona.nombre}} {{persona.apellido}} Joaquin Viarruel
-  <p>
+  <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+    <!-- IMAGEN DE PERFIL ↓ -->
+    <img src="../../../assets/profile-img.png" alt="profile-picture" class="profile-photo">
+  </div>
 
-    <!-- LOCALIDAD ↓ -->
-  <div class="info-localidad"> {{persona.domicilio}}San Luis, Argentina</div>
+  <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 ">
 
-  <!-- TITULO ↓ -->
-  <div class="text-titulo"> {{persona.titulo}} Desarrollo Web -
-    <a href="">Información de contacto</a>
+    <!-- NOMBRE Y APELLIDO ↓ -->
+    <p class="nombre"> {{persona.nombre}} {{persona.apellido}} Joaquin Viarruel
+    <p>
+
+      <!-- LOCALIDAD ↓ -->
+    <p class="info-localidad"> {{persona.domicilio}}San Luis, Argentina
+    <p>
+
+      <!-- TITULO ↓ -->
+    <p class="text-titulo"> {{persona.titulo}} Full Stack Developer Jr.
+    </p>
+
+
   </div>
 
   <!-- SOBRE MÍ ↓ -->
-  <div class="text-sobremi"> {{persona.sobremi}}</div>
-</div>
+  <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
+    <span>
+      <h1 class="title">Sobre mí</h1>
+      <p class="text-sobremi">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet officia tenetur magni
+        quas iusto ea molestias, quo sint quod sapiente? Esse, cum! Voluptatum dolorum recusandae tenetur consequuntur
+        unde rerum ab. Lorem ipsum dolor sit amet consectetur adipisicing elit. . {{persona.sobremi}}</p>
+    </span>
 
-
-<br><br>
-
-<button type="button" class="btn btn-primary" id="interes-en">Tengo interes en</button>
-
-
-<hr>
+  </div>
+  <hr>

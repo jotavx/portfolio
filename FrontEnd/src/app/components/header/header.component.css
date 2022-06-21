@@ -30,11 +30,8 @@
 }
 
 .logo {
-  position: absolute;
   width: 70px;
   height: 50px;
-  top: 0;
-  left: 0;
   border-radius: 10%;
 }
 
@@ -43,8 +40,7 @@
   top: 15px;
   left: 85px;
   color: white;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
   display: inline;
 }

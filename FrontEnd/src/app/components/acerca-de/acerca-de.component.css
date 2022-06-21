@@ -1,6 +1,6 @@
 .info-personal {
   position: relative;
-  top: 20px;
+  top: 30px;
   left: 250px;
 }
 
@@ -17,12 +17,6 @@
   color: antiquewhite;
 }
 
-#interes-en {
-  position: relative;
-  left: 560px;
-  bottom: 60px;
-}
-
 .profile-photo {
   position: absolute;
   left: 160px;
@@ -34,5 +28,16 @@
 
 .text-sobremi {
   position: relative;
+  padding: 20px;
+  width: 450px;
   color: whitesmoke;
+}
+
+.title {
+  position: relative;
+  display: inline;
+  top: 15px;
+  left: 20px;
+  font-size: medium;
+  color: blanchedalmond;
 }
