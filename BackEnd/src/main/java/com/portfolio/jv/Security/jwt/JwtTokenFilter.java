@@ -16,12 +16,12 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
+    private final static Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
 
     @Autowired
     JwtProvider jwtProvider;
     @Autowired
-    UserDetailsImpl userDetailsServiceImpl;
+    UserDetailsImpl userDetailsService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -29,13 +29,13 @@ public class JwtTokenFilter extends OncePerRequestFilter {
             String token = getToken(request);
             if (token != null && jwtProvider.validateToken(token)) {
                 String nombreUsuario = jwtProvider.getNombreUsuarioFromToken(token);
-                UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(nombreUsuario);
+                UserDetails userDetails = userDetailsService.loadUserByUsername(nombreUsuario);
                 UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userDetails,
                         null, userDetails.getAuthorities());
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
         } catch (Exception e) {
-            logger.error("Falló el metodo doFilterInternal");
+            logger.error("Falló el metodo doFilterInternal" + e.getMessage());
         } 
         filterChain.doFilter(request, response);
     }

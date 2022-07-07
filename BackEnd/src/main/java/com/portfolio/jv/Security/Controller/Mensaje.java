@@ -7,9 +7,6 @@ public class Mensaje {
     
     //Constructor
 
-    public Mensaje() {
-    }
-
     public Mensaje(String mensaje) {
         this.mensaje = mensaje;
     }
