@@ -9,7 +9,10 @@
         <a href="https://www.facebook.com/joaquiolvi" target="_blank">
           <img src="./assets/facebook.png" alt="facebook" class="fbook"></a>
       </div>
-      <button type="button" class="btn btn-outline-success" id="btn" (click)="login()">Ingresar</button>
+      <button type="button" class="btn btn-outline-success" id="btn" (click)="login()"
+        *ngIf="!isLogged">Ingresar</button>
+      <button type="button" class="btn btn-outline-success" id="btn" (click)="onLogOut()" *ngIf="isLogged">Cerrar
+        Sesion</button>
     </div>
   </div>
 </div>
