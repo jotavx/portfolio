@@ -22,13 +22,14 @@ public class ImpPersonaService implements IPersonaService{
     }
 
     @Override
-    public void savePersona(Persona persona) {
-        ipersonaRepository.save(persona);
+    public Persona savePersona(Persona persona) {
+       return ipersonaRepository.save(persona);
     }
 
     @Override
     public void deletePersona(Long id) {
         ipersonaRepository.deleteById(id);
+       
     }
 
     @Override

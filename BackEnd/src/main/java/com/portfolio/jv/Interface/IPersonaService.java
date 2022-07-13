@@ -14,7 +14,7 @@ public interface IPersonaService {
     
     //Guardar un objeto de tipo persona 
     
-    public void savePersona (Persona persona) ;
+    public Persona savePersona (Persona persona) ;
     
     //Eliminar un usuario 
     

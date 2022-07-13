@@ -22,8 +22,8 @@
   left: 160px;
   top: 520px;
   border-radius: 50%;
-  width: 168px;
-  height: 168px;
+  width: 185px;
+  height: 190px;
 }
 
 .text-sobremi {
@@ -40,4 +40,14 @@
   left: 20px;
   font-size: medium;
   color: blanchedalmond;
+}
+
+#add-button {
+  position: relative;
+  left: 340px;
+  bottom: 10px;
+}
+#edit-button,
+#delete-button {
+  margin: 4px;
 }

@@ -8,6 +8,8 @@ import com.portfolio.jv.Entity.Persona;
 import com.portfolio.jv.Interface.IPersonaService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,45 +28,31 @@ public class PersonaController {
     @Autowired IPersonaService ipersonaService;
     
     @GetMapping("personas/traer")
-    public List<Persona> getPersona(){
-        return ipersonaService.getPersona();
+    public ResponseEntity<List<Persona>> getPersona(){
+        List<Persona> personas = ipersonaService.getPersona();
+        return new ResponseEntity<>(personas, HttpStatus.OK);
     }
     
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("personas/crear")
-    public String createPersona(@RequestBody Persona persona){
-        ipersonaService.savePersona(persona);
-        return "La persona fue creada correctamente.";
+    public ResponseEntity<Persona> createPersona(@RequestBody Persona persona){
+        Persona newPersona = ipersonaService.savePersona(persona);
+        return new ResponseEntity<>(newPersona, HttpStatus.OK);
     }
     
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("personas/borrar/{id}")
-    public String deletePersona(@PathVariable Long id){
+    public ResponseEntity<?> deletePersona(@PathVariable("id") Long id){
         ipersonaService.deletePersona(id);
-        return "La persona fue eliminada correctamente.";
+        return new ResponseEntity(HttpStatus.OK);
     }
+    
     // URL:PUERTO/personas/editar/id/nombre $ apellido $ img
     @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("personas/editar/{id}")    
-    public Persona editPersona(@PathVariable Long id, 
-                               @RequestParam("nombre") String nuevoNombre,
-                               @RequestParam("apellido") String nuevoApellido,
-                               @RequestParam("domicilio") String nuevoDomicilio,
-                               @RequestParam("titulo") String nuevoTitulo,
-                               @RequestParam("sobremi") String nuevoSobremi,
-                               @RequestParam("img") String nuevoImg){
-    
-        Persona persona = ipersonaService.findPersona(id);
-        
-        persona.setNombre(nuevoNombre);
-        persona.setApellido(nuevoApellido);
-        persona.setDomicilio(nuevoDomicilio);
-        persona.setTitulo(nuevoTitulo);
-        persona.setSobremi(nuevoSobremi);
-        persona.setImg(nuevoImg);
-        
-        ipersonaService.savePersona(persona);
-        return persona;
+    @PutMapping("personas/editar")
+    public ResponseEntity<Persona> editPersona (@RequestBody Persona persona) {
+        Persona updatePersona = ipersonaService.savePersona(persona);
+        return new ResponseEntity<>(updatePersona, HttpStatus.OK);
     }
     
  
