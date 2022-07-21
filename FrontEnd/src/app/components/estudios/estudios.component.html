@@ -7,23 +7,118 @@
 
   <div class="col-lg-1"></div>
   <div class="col-lg-10">
-    <div class="estudios-1">
-      <h2>Gobernador Alvarez</h2><br><br>
-      <p>Estudio Primario</p>
+    <div *ngFor="let est of estudios" class="estudios-1">
+      <h2>{{est.casaEstudios}}</h2>
+      <br><br>{{est.tituloEstudios}} - {{est.periodo}}
+      <img src="{{est.urlLogo}}" alt="logo" class="logo">
+      <div class="col-lg-1"></div>
+      <a (click)="onOpenModal(est,'edit')" type="button" id="edit-button" class="btn btn-warning"
+        *ngIf="isAdmin">Editar</a>
+      <a (click)="onOpenModal(est,'delete')" type="button" id="delete-button" class="btn btn-danger"
+        *ngIf="isAdmin">Eliminar
+      </a>
     </div>
     <br>
+    <a (click)="onOpenModal(null, 'add')" type="button" id="add-button" class="btn btn-primary" *ngIf="isAdmin">Agregar
+      Estudio</a>
+  </div>
 
-    <div class="estudios-3">
-      <h2>Cristo Redentor</h2> <br><br>
-      <p>Estudio Secundario</p>
-    </div>
-    <br>
-    <div class="cursos">
-      <img src="{{estudios.urlLogo}}" alt="">
-      <h2>{{estudios.casaEstudios}} Argentina Programa</h2><br><br>
-      <p>{{estudios.tituloEstudios}} Full Stack Developer Jr. - {{estudios.periodo}}</p>
+
+  <!-- MODAL PARA AGREGAR ESTUDIOS -->
+  <div class="modal fade" id="addEstudiosModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="addEstudiosModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addEstudiosModalLabel">Crear perfil</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <h6>Para crear un perfil debe tener acceso a una cuenta de administrador</h6>
+        <div class="modal-body">
+          <form #addForm="ngForm" (ngSubmit)="onCreateEstudios(addForm)">
+            <div class="form-group">
+              <label for="casaEstudios"></label>
+              <input type="text" ngModel name="casaEstudios" class="form-control" id="casaEstudios" placeholder="Nombre"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="tituloEstudios"></label>
+              <input type="text" ngModel name="tituloEstudios" class="form-control" id="tituloEstudios"
+                placeholder="Titulo Obtenido" required>
+            </div>
+            <div class="form-group">
+              <label for="periodo"></label>
+              <input type="text" ngModel name="periodo" class="form-control" id="periodo" placeholder="Periodo"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="urlLogo"></label>
+              <input type="text" ngModel name="urlLogo" class="form-control" id="urlLogo" placeholder="Logo URL"
+                required>
+            </div>
+            <div class="modal-footer">
+              <button type="button" id="add-employee-form" class="btn btn-secondary"
+                data-dismiss="modal">Cerrar</button>
+              <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<div class="col-lg-1"></div>
-<hr>
+  <!-- MODAL PARA EDITAR ESTUDIOS -->
+  <div class="modal fade" id="editEstudiosModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="editEstudiosModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editEstudiosModalLabel">Editar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form #editForm="ngForm">
+            <label for="casaEstudios">Nombre</label><br>
+            <input ngModel type="text" ngModel="{{editEstudios?.casaEstudios}} " name="casaEstudios"
+              class="form-control">
+            <label for="tituloEstudios">Titulo Obtenido</label><br>
+            <input type="text" name="tituloEstudios" ngModel="{{editEstudios?.tituloEstudios}}" class="form-control">
+            <label for="periodo">Periodo</label><br>
+            <input ngModel type="text" ngModel="{{editEstudios?.periodo}} " name="periodo" class="form-control">
+            <label for="urlLogo">Logo</label><br>
+            <input ngModel type="text" ngModel="{{editEstudios?.urlLogo}} " name="urlLogo" class="form-control">
+            <input type="hidden" name="id" ngModel="{{editEstudios?.id}} ">
+            <div class="modal-footer">
+              <button id="update-persona-modal" type="button" class="btn btn-secondary"
+                data-dismiss="modal">Cancelar</button>
+              <button (click)="onEditEstudios(editForm.value)" type="button" class="btn btn-primary"
+                data-dismiss="modal">Guardar
+                cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL PARA BORRAR ESTUDIOS-->
+  <div class="modal fade" id="deleteEstudiosModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+    aria-labelledby="deleteEstudiosModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteEstudiosModalLabel">Borrar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Esta acción eliminará {{deleteEstudios?.casaEstudios}} . ¿Desea continuar?</p>
+        </div>
+        <div class="modal-footer borrar">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          <button (click)="onDeleteEstudios(deleteEstudios.id)" type="button" class="btn btn-primary"
+            data-dismiss="modal">Sí</button>
+        </div>

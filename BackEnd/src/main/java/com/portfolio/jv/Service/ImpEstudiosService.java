@@ -19,8 +19,8 @@ public class ImpEstudiosService implements IEstudiosService{
     }
 
     @Override
-    public void saveEstudios(Estudios estudios) {
-        iestudiosRepository.save(estudios);
+    public Estudios saveEstudios(Estudios estudios) {
+        return iestudiosRepository.save(estudios);
     }
 
     @Override

@@ -22,9 +22,20 @@ public class Skills {
     @NotNull
     @Size(min = 1, max = 255, message = "No cumple con la longitud")
     private String porcentaje;
+    
+     @Size(min = 1, max = 500, message = "No cumple con la longitud")
+    private String urlLogo;
 
     public Long getId() {
         return id;
+    }
+
+    public String getUrlLogo() {
+        return urlLogo;
+    }
+
+    public void setUrlLogo(String urlLogo) {
+        this.urlLogo = urlLogo;
     }
 
     public void setId(Long id) {

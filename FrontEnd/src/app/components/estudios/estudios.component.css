@@ -44,3 +44,17 @@ p {
   font-size: 70px;
   margin-bottom: 70px;
 }
+
+.logo {
+  height: 100px;
+  width: 100px;
+  right: 45px;
+  top: 70px;
+  position: absolute;
+  border-radius: 10px;
+}
+
+#edit-button,
+#delete-button {
+  margin: 4px;
+}

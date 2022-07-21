@@ -14,6 +14,7 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { HysComponent } from './components/hys/hys.component';
 import { FormsModule } from '@angular/forms';
 import { interceptorProvider } from './service/interceptor-service';
+import { ProyectosComponent } from './components/proyectos/proyectos.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { interceptorProvider } from './service/interceptor-service';
     LoginComponent,
     EstudiosComponent,
     HysComponent,
+    ProyectosComponent,
   ],
   imports: [
     BrowserModule,

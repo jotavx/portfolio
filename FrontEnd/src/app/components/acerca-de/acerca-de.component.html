@@ -24,11 +24,14 @@
     </span>
 
 
-    <a (click)="onOpenModal(per,'edit')" type="button" id="edit-button" class="btn btn-warning">Editar perfil</a>
-    <a (click)="onOpenModal(per,'delete')" type="button" id="delete-button" class="btn btn-danger">Eliminar
+    <a (click)="onOpenModal(per,'edit')" type="button" id="edit-button" class="btn btn-warning" *ngIf="isAdmin">Editar
+      perfil</a>
+    <a (click)="onOpenModal(per,'delete')" type="button" id="delete-button" class="btn btn-danger"
+      *ngIf="isAdmin">Eliminar
       perfil</a>
   </div>
-  <div><a (click)="onOpenModal(null, 'add')" type="button" id="add-button" class="btn btn-primary">Crear perfil</a>
+  <div><a (click)="onOpenModal(null, 'add')" type="button" id="add-button" class="btn btn-primary" *ngIf="isAdmin">Crear
+      perfil</a>
   </div>
 
   <hr>

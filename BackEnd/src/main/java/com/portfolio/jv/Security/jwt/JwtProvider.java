@@ -1,4 +1,4 @@
-
+    
 package com.portfolio.jv.Security.jwt;
 
 import com.portfolio.jv.Security.Entity.UsuarioPrincipal;
@@ -26,9 +26,14 @@ public class JwtProvider {
      
      public String generateToken(Authentication authentication){
          UsuarioPrincipal usuarioPrincipal = (UsuarioPrincipal) authentication.getPrincipal();
+        
+         
          return Jwts.builder().setSubject(usuarioPrincipal.getUsername())
+               
+               
                  .setIssuedAt(new Date())
                  .setExpiration(new Date(new Date().getTime()+expiration*1000))
+             
                  .signWith(SignatureAlgorithm.HS512, secret)
                  .compact();
                   }

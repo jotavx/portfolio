@@ -14,10 +14,10 @@
 
 .inst {
   position: absolute;
-  width: 60px;
-  height: 69px;
+  width: 35px;
+  height: 35px;
   right: 90px;
-  bottom: -5px;
+  top: 8px;
   color: rgb(17, 15, 16);
 }
 
@@ -35,6 +35,14 @@
   border-radius: 10%;
 }
 
+.linkedin {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  right: 180px;
+  bottom: 10px;
+}
+
 .title {
   position: absolute;
   top: 15px;
@@ -43,4 +51,22 @@
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: bold;
   display: inline;
+}
+
+#add-button {
+  position: absolute;
+  right: 400px;
+  top: 5px;
+}
+
+#edit-button {
+  position: absolute;
+  right: 320px;
+  top: 5px;
+}
+
+#delete-button {
+  position: absolute;
+  right: 226px;
+  top: 5px;
 }

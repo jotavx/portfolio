@@ -11,7 +11,7 @@ public interface ISkillsService{
     public List<Skills> getSkills();
     
      //Guardar un objeto de tipo Skills
-    public void saveSkills (Skills skills);
+    public Skills saveSkills (Skills skills);
     
      //Eliminar un objeto por ID
     public void deleteSkills (Long id);

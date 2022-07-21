@@ -9,7 +9,7 @@ public interface IExperienciaService {
      public List<Experiencia> getExperiencia();
 
     //Guardar un objeto de tipo experiencia
-    public void saveExperiencia (Experiencia experiencia);
+    public Experiencia saveExperiencia (Experiencia experiencia);
 
    //Eliminar un objeto por ID
    public void deleteExperiencia (Long id);

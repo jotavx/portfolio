@@ -10,7 +10,7 @@ public interface IEstudiosService {
      public List<Estudios>getEstudios();
 
     //Guardar un objeto de tipo experiencia
-    public void saveEstudios (Estudios estudios);
+    public Estudios saveEstudios (Estudios estudios);
 
    //Eliminar un objeto por ID
    public void deleteEstudios (Long id);

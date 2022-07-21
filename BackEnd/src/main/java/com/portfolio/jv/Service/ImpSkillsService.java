@@ -20,8 +20,8 @@ public class ImpSkillsService implements ISkillsService{
     }
 
     @Override
-    public void saveSkills(Skills skills) {
-         iskillsRepository.save(skills);
+    public Skills saveSkills(Skills skills) {
+         return iskillsRepository.save(skills);
     }
 
     @Override

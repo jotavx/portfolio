@@ -5,6 +5,9 @@ import com.portfolio.jv.Entity.Estudios;
 import com.portfolio.jv.Interface.IEstudiosService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,38 +23,29 @@ public class EstudiosController {
     @Autowired IEstudiosService iestudiosService;
     
     @GetMapping("estudios/traer") 
-    public List<Estudios> getEstudios(){
-        return iestudiosService.getEstudios();
+    public ResponseEntity<List<Estudios>> getEstudios(){
+        List<Estudios> estudios = iestudiosService.getEstudios();
+        return new ResponseEntity<>(estudios, HttpStatus.OK);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("estudios/crear")
-    public String createEstudios(@RequestBody Estudios estudios){
-    iestudiosService.saveEstudios(estudios);
-    return "Los datos han sido creados correctamente";
+    public ResponseEntity<Estudios> createEstudios(@RequestBody Estudios estudios){
+        Estudios newEstudios = iestudiosService.saveEstudios(estudios);
+        return new ResponseEntity<>(newEstudios, HttpStatus.OK);
     }
     
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("estudios/borrar/{id}")
-    public String deleteEstudios(@PathVariable Long id){
-    iestudiosService.deleteEstudios(id);
-    return "Los datos han sido eliminados correctamente";
+    public ResponseEntity<?> deleteEstudios(@PathVariable("id") Long id){
+        iestudiosService.deleteEstudios(id);
+        return new ResponseEntity(HttpStatus.OK);
             }
-    
-    @PutMapping("estudios/editar/{id}")
-    public Estudios editEstudios(@PathVariable Long id, 
-                                 @RequestParam("tituloEstudios") String nuevoTituloEstudios,
-                                 @RequestParam("casaEstudios") String nuevoCasaEstudios,
-                                 @RequestParam("periodo") String nuevoPeriodo,
-                                 @RequestParam("urlLogo") String nuevoUrlLogo){
-    
-        Estudios estudios = iestudiosService.findEstudios(id);
-        
-        estudios.setTituloEstudios(nuevoTituloEstudios);
-        estudios.setCasaEstudios(nuevoCasaEstudios);
-        estudios.setPeriodo(nuevoPeriodo);
-        estudios.setUrlLogo(nuevoUrlLogo);
-        
-        iestudiosService.saveEstudios(estudios);
-        return estudios;
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("estudios/editar")
+    public ResponseEntity<Estudios> editEstudios (@RequestBody Estudios estudios) {
+        Estudios updateEstudios = iestudiosService.saveEstudios(estudios);
+        return new ResponseEntity<>(updateEstudios, HttpStatus.OK);
     }
     
     @GetMapping("/estudios/traer/perfil")

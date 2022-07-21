@@ -14,12 +14,24 @@ export class AcercaDeComponent implements OnInit {
   public persona: persona[];
   public deletePersona: persona;
   public editPersona: persona;
+  roles: string[];
+  isAdmin: boolean = false;
 
-  constructor(public personaService: PersonaService) {}
+  constructor(
+    public personaService: PersonaService,
+    private tokenService: TokenService
+  ) {}
 
   ngOnInit(): void {
     this.personaService.getPersona().subscribe((data) => {
       this.persona = data;
+    });
+    this.getPersona();
+    this.roles = this.tokenService.getAuthorities();
+    this.roles.forEach((role) => {
+      if (role === 'ROLE_ADMIN') {
+        this.isAdmin = true;
+      }
     });
   }
 
@@ -46,8 +58,6 @@ export class AcercaDeComponent implements OnInit {
       }
     );
   }
-
-  //
 
   public onCreatePersona(addForm: NgForm): void {
     document.getElementById('#addPersonaModal')?.click();
@@ -90,5 +100,3 @@ export class AcercaDeComponent implements OnInit {
     button.click();
   }
 }
-
-//  persona: persona = new persona('', '', '', '', '', '');
